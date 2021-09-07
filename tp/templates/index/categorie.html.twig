@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block title %}Création d'une categorie
+{% endblock %}
+{% block body %}
+	<br><br>
+	{{form_start(formCategory)}}
+	{{form_row(formCategory.titre)}}
+	{{form_row(formCategory.description)}}
+	<button class="btn btn-primary" type="submit">Créer la categorie</button>
+
+	{{form_end(formCategory)}}
+{% endblock %}

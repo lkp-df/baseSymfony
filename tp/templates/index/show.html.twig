@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %} {% block title %}Affichage Article {% endblock %} {% block body %}
+<h1>les informations de l'article</h1>
+<div class="card" style="width: 24rem;">
+    <div class="card-header">Informations du'un article</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title">Désignation</h5>
+
+            </div>
+            <div class="col-md-6">
+                <p class="card-text"><b>
+                    {{article.designation}}
+                </b></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title">Prix</h5>
+            </div>
+            <div class="col-md-6">
+                <p class="card-text"><b>
+                    {{article.prix}}
+                </b></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title">Catégorie</h5>
+            </div>
+            <div class="col-md-6">
+                <p class="card-text"><b>
+                    {{article.category.titre}}
+                </b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<a class="btn btn-success" href="{{path('nos_articles')}}">Tous les articles</a> {% endblock %}

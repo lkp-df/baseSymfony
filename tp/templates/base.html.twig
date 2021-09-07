@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Bienvenue!{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{asset('css/bootswatch/bootstrap.min.css')}}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{path('accueil')}}">Gestion Article</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path('create_cat')}}">Creer une catégorie
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path('create_article')}}">creer un article
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path('nos_articles')}}">Nos Articles
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path('search_by_cat')}}">Recherche par categorie
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+    {% block javascripts %}{% endblock %}
+</body>
+
+</html>

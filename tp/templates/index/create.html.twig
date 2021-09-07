@@ -1,0 +1,5 @@
+{% extends "base.html.twig" %} {% block title %}Creer un Article{% endblock %} {% block body %}
+<h2>Creer un Article ici les amis</h2>
+
+{{ form_start(formArticle,{'attr':{'novalidate':'novalidate'}}) }}{{ form_row(formArticle.designation) }} {{ form_row(formArticle.prix) }} {{ form_row(formArticle.category | raw) }}
+<button class="btn btn-primary" type="submit">Créer l'article</button>{{ form_end(formArticle)}} {% endblock %}

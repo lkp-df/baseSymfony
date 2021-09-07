@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block title %}Modification d'un article{% endblock %}
+{% block body %}
+<br><br>
+{{form_start(formEdit)}}
+{{form_row(formEdit.designation)}}
+{{form_row(formEdit.prix)}}
+{{form_row(formEdit.category)}}
+<button class="btn btn-success" type="submit">Modifier l'article</button>
+<a class="btn btn-dark" href="{{path('nos_articles')}}">Annuler</a>
+
+{{form_end(formEdit)}}
+{% endblock %}
