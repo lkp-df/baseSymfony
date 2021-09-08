@@ -32,7 +32,7 @@ class Artcle
      * @Assert\NotBlank
      * @Assert\NotEqualTo(
      * value =  0,
-     * message = "le prix ne doit pas etre null)
+     * message = "le prix ne doit pas etre null")
      */
     private $prix;
 

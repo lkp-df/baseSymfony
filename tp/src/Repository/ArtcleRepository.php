@@ -47,4 +47,17 @@ class ArtcleRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByRangePrice($min,$max)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.prix >= :min')
+            ->setParameter('min', $min)
+            ->andWhere('a.prix <= :max')
+            ->setParameter('max', $max)
+            ->orderBy('a.id','ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

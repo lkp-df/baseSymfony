@@ -6,10 +6,12 @@ use App\Entity\Artcle;
 use App\Entity\Category;
 use App\Entity\CategorySearch;
 use App\Entity\NomSerch;
+use App\Entity\PriceSearch;
 use App\Form\ArticleType;
 use App\Form\CategorySearchType;
 use App\Form\CategoryType;
 use App\Form\NomSearchType;
+use App\Form\PriceSearchType;
 use App\Repository\ArtcleRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -143,7 +145,7 @@ class IndexController extends AbstractController
         );
     }
     /**
-     * @Route("/articles/search",name="search_by_cat")
+     * @Route("/articles/search_cat",name="search_by_cat")
      */
     public function getArticleByCategory(ArtcleRepository $repo, Request $request)
     {
@@ -167,6 +169,38 @@ class IndexController extends AbstractController
             "index/findArticleBycategorie.html.twig",
             [
                 "formByCategory" => $form->createView(),
+                "articles" => $articles
+            ]
+        );
+    }
+    /**
+     * @Route("/articles/search_price",name="search_by_range_price")
+     */
+    public function getArticleByprice(Request $request, ArtcleRepository $repo)
+    {
+        $priceSearch = new PriceSearch();
+        //creons un formulaire
+        $form = $this->createForm(PriceSearchType::class, $priceSearch);
+        $form->handleRequest($request);
+        $articles = [];
+
+        //verifions si le formulaire est soumis
+        if ($form->isSubmitted() && $form->isValid()) {
+            //je recupere les deux valeurs min et max
+            $min = $priceSearch->getMinPrice();
+            $max = $priceSearch->getMaxPrice();
+
+            //verifions si les valeurs du formulaires ne sont pas vides
+            if ($min != "" && $max != "") {
+                $articles = $repo->findByRangePrice($min, $max);
+            } else {
+                $articles = $repo->findAll();
+            }
+        }
+        return $this->render(
+            "index/findByPrice.html.twig",
+            [
+                "formByPrice" => $form->createView(),
                 "articles" => $articles
             ]
         );

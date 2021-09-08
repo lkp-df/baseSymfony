@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+{% block title %}Rechercher un article par prix{% endblock %}
+{% block body %}
+<br>
+<h1>Effectuer la recherche d'un article par prix mes amis</h1>
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            {{form_start(formByPrice,{'attr':{'novalidate':'novalidate'}})}}
+         {{form_row(formByPrice.minPrice)}}
+         {{form_row(formByPrice.maxPrice)}}
+
+        </div>
+
+        <button type="submit " class="btn btn-primary ">rechercher</button> {{form_end(formByPrice)}}
+    </div>
+</div>
+{% if articles %}
+<h1>Tous Nos Articles en stock
+</h1>
+<br>
+<div class="content ">
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th scope="col ">#</th>
+                <th scope="col ">Désignation</th>
+                <th scope="col ">Prix</th>
+                <th scope="col ">Catégorie</th>
+                <th scope="col ">Actions</th>
+            </tr>
+        </thead>
+        {% set i = 0 %} {% for article in articles %}
+        <tbody>
+            <tr>
+                <th scope="row ">{% set i = i + 1 %} {{ i }}</th>
+                <td>{{article.designation}}</td>
+                <td>{{article.prix}} f
+                </td>
+                <td>{{article.category.titre}}</td>
+                <td>
+                    <a href="{{path( 'detail_article',{ 'id':article.id})}} " class="btn btn-primary ">Details</a>
+                    <a href="{{path( 'edit_article',{ 'id':article.id})}} " class="btn btn-success ">modifier</a>
+                    <a href="{{path( 'delete_article',{ 'id':article.id})}} " class="btn btn-danger " onclick="return confirm( 'Attention, la suppression de cet article est dangereuse'); ">supprimer</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% else %} Aucun resultat{% endif %}
+{% endblock %}
